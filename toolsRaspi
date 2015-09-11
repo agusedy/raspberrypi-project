@@ -1,0 +1,34 @@
+#!/bin/bash
+#echo "Agus Edy Cahyono G.211.13.0047"
+OPTIONS="Suhu GPIO NsLookup WhoAmI Quit"
+select opt in $OPTIONS; do
+	if [ "$opt" = "Quit" ]; then
+		echo done
+		exit
+	
+	elif [ "$opt" = "Suhu" ]; then
+		#echo Ping Masukan IP:
+		#read IP
+		#ping -c5 $IP
+		vcgencmd measure_temp 
+#clear	
+	elif [ "$opt" = "GPIO" ]; then
+                #echo Trace Path:
+		#read PTH
+		#tracepath $PTH
+		gpio readall
+
+	elif [ "$opt" = "NsLookup" ]; then
+                echo Ns Lookup Masukan Alamat:
+		read ADDR
+		nslookup $ADDR
+
+	elif [ "$opt" = "WhoAmI" ]; then
+                echo Who Am I 
+		whoami
+	
+	else
+		clear
+		echo bad option
+	fi
+done

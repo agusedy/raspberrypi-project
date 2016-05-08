@@ -1,6 +1,6 @@
 #!/bin/bash
 #echo "Agus Edy Cahyono G.211.13.0047"
-OPTIONS="Suhu GPIO NsLookup WhoAmI Quit"
+OPTIONS="Suhu GPIO Ram Disk Quit"
 select opt in $OPTIONS; do
 	if [ "$opt" = "Quit" ]; then
 		echo done
@@ -18,14 +18,16 @@ select opt in $OPTIONS; do
 		#tracepath $PTH
 		gpio readall
 
-	elif [ "$opt" = "NsLookup" ]; then
-                echo Ns Lookup Masukan Alamat:
-		read ADDR
-		nslookup $ADDR
+	elif [ "$opt" = "Ram" ]; then
+                #echo Ns Lookup Masukan Alamat:
+		#read ADDR
+		#nslookup $ADDR
+		free -h
 
-	elif [ "$opt" = "WhoAmI" ]; then
-                echo Who Am I 
-		whoami
+	elif [ "$opt" = "Disk" ]; then
+                #echo Who Am I 
+		#whoami
+		df -h
 	
 	else
 		clear

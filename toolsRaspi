@@ -11,7 +11,7 @@ select opt in $OPTIONS; do
 		#read IP
 		#ping -c5 $IP
 		vcgencmd measure_temp 
-#clear	
+		#clear	
 	elif [ "$opt" = "GPIO" ]; then
                 #echo Trace Path:
 		#read PTH

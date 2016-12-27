@@ -1,6 +1,6 @@
 #!/bin/bash
 #echo "Agus Edy Cahyono G.211.13.0047"
-OPTIONS="Suhu GPIO Ram Disk Quit"
+OPTIONS="Suhu GPIO Ram Disk Alive MyIP Quit"
 select opt in $OPTIONS; do
 	if [ "$opt" = "Quit" ]; then
 		echo done
@@ -12,6 +12,7 @@ select opt in $OPTIONS; do
 		#ping -c5 $IP
 		vcgencmd measure_temp 
 		#clear	
+
 	elif [ "$opt" = "GPIO" ]; then
                 #echo Trace Path:
 		#read PTH
@@ -25,10 +26,15 @@ select opt in $OPTIONS; do
 		free -h
 
 	elif [ "$opt" = "Disk" ]; then
-                #echo Who Am I 
-		#whoami
-		df -h
-	
+                df -h
+
+	elif [ "$opt" = "Alive" ]; then
+		#sudo arp-scan -l --interface=eth0
+                sudo arp-scan -l --interface=eth0
+
+	elif [ "$opt" = "MyIP" ]; then
+		ifconfig
+ 	
 	else
 		clear
 		echo bad option

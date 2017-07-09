@@ -1,6 +1,6 @@
 #!/bin/bash
 #echo "Agus Edy Cahyono G.211.13.0047"
-OPTIONS="Suhu GPIO Ram Disk Alive MyIP Quit"
+OPTIONS="Suhu GPIO Ram Disk Alive MyIP Forward Quit"
 select opt in $OPTIONS; do
 	if [ "$opt" = "Quit" ]; then
 		echo done
@@ -30,10 +30,14 @@ select opt in $OPTIONS; do
 
 	elif [ "$opt" = "Alive" ]; then
 		#sudo arp-scan -l --interface=eth0
-                sudo arp-scan -l --interface=eth0
+                sudo arp-scan -l --interface=wlan0
 
 	elif [ "$opt" = "MyIP" ]; then
 		ifconfig
+
+	elif [ "$opt" = "Forward" ]; then
+		sudo iptables -t nat -A PREROUTING -d 192.168.195.104 -p tcp --dport 8291 -j REDIRECT --to-port 3306
+		sudo iptables -t nat -A POSTROUTING -j MASQUERADE
  	
 	else
 		clear
